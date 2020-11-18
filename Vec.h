@@ -20,6 +20,7 @@ class Vec {
             for(int* b = data; b != limit; b++)
                 *b = val;
         }
+        // copy constructor
         Vec(const Vec& arr){
             size_t n = arr.size();
             data = new int[n];
@@ -28,6 +29,13 @@ class Vec {
             for(int* b = arr.data; b != arr.limit; b++, azer++){
                 *azer  = *b;
             }
+        }
+        // move constructor
+        Vec(Vec&& arr){
+            data = arr.data;
+            limit = arr.limit;
+            arr.data = NULL;
+            arr.limit = NULL;
         }
         Vec& operator=(const Vec& rhs){
             if(this != &rhs){
